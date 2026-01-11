@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Web cơ bản</title>
+  <style>
+    /* CSS tối giản */
+    :root {
+      --bg: #0f172a;   /* slate-900 */
+      --fg: #e2e8f0;   /* slate-200 */
+      --accent: #38bdf8; /* sky-400 */
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: linear-gradient(180deg, #0b1220, var(--bg));
+      color: var(--fg);
+      line-height: 1.6;
+    }
+    header, footer {
+      padding: 16px 24px;
+      border-bottom: 1px solid rgba(226,232,240,0.1);
+    }
+    footer { border-top: 1px solid rgba(226,232,240,0.1); border-bottom: 0; }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    nav {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    a:hover { text-decoration: underline; }
+    .hero {
+      padding: 48px 0;
+      text-align: center;
+    }
+    .btn {
+      display: inline-block;
+      padding: 10px 16px;
+      border-radius: 8px;
+      background: var(--accent);
+      color: #0b1220;
+      font-weight: 600;
+      box-shadow: 0 8px 24px rgba(56,189,248,0.25);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .card {
+      background: rgba(226,232,240,0.06);
+      border: 1px solid rgba(226,232,240,0.12);
+      border-radius: 12px;
+      padding: 16px;
+    }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      background: rgba(226,232,240,0.08);
+      padding: 2px 6px;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <strong>Nam.dev</strong>
+      <nav aria-label="Chính">
+        <a href="#gioi-thieu">Giới thiệu</a>
+        <a href="#tinh-nang">Tính năng</a>
+        <a href="#lien-he">Liên hệ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero" id="gioi-thieu">
+      <h1>Trang web HTML cơ bản</h1>
+      <p>Bản mẫu tối giản để bạn bắt đầu: cấu trúc HTML, CSS nội tuyến, và chút JavaScript.</p>
+      <a class="btn" href="#tinh-nang">Khám phá nhanh</a>
+    </section>
+
+    <section id="tinh-nang">
+      <h2>Tính năng chính</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Semantic HTML</h3>
+          <p>Sử dụng <code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;footer&gt;</code> để dễ đọc và SEO.</p>
+        </article>
+        <article class="card">
+          <h3>Responsive</h3>
+          <p>Thẻ <code>&lt;meta viewport&gt;</code> và lưới CSS giúp hiển thị tốt trên di động.</p>
+        </article>
+        <article class="card">
+          <h3>Styling nhẹ</h3>
+          <p>Một vài biến CSS và lớp cơ bản để tùy chỉnh nhanh.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="lien-he">
+      <h2>Liên hệ</h2>
+      <form id="contact-form">
+        <label>
+          Tên:
+          <input type="text" name="name" required />
+        </label>
+        <br /><br />
+        <label>
+          Email:
+          <input type="email" name="email" required />
+        </label>
+        <br /><br />
+        <label>
+          Lời nhắn:
+          <textarea name="message" rows="4" required></textarea>
+        </label>
+        <br /><br />
+        <button class="btn" type="submit">Gửi</button>
+      </form>
+      <p id="status" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © 2025 — Mẫu web cơ bản
+    </div>
+  </footer>
+
+  <script>
+    // JS nhỏ: chặn submit và hiển thị trạng thái
+    const form = document.getElementById('contact-form');
+    const status = document.getElementById('status');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      const name = data.get('name');
+      status.textContent = `Cảm ơn ${name}! Mình đã nhận được lời nhắn của bạn.`;
+      form.reset();
+    });
+  </script>
+</body>
+</html>
